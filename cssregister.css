@@ -1,0 +1,369 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+    color:#222;
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    width:100%;
+
+    background:#0f172a;
+
+    height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 30px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.logo img{
+
+    width:55px;
+
+}
+
+.logo h1{
+
+    color:#fff;
+
+    font-size:30px;
+
+}
+
+.logo p{
+
+    color:#d6d6d6;
+
+    font-size:14px;
+
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.register-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 20px 100px;
+
+}
+
+/* =========================
+   CARD
+========================= */
+
+.register-card{
+
+    width:100%;
+
+    max-width:720px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.register-card h2{
+
+    text-align:center;
+
+    font-size:32px;
+
+    margin-bottom:10px;
+
+    color:#1d4ed8;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #d8d8d8;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+textarea{
+
+    resize:vertical;
+
+}
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+.preview{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin:25px 0;
+
+}
+
+.preview img{
+
+    width:140px;
+
+    height:140px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #fff;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.register-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.register-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+}
+
+.bottom-nav a{
+
+    color:#d4d4d4;
+
+    text-decoration:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:4px;
+
+}
+
+.bottom-nav a.active{
+
+    color:#3b82f6;
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.register-card{
+
+padding:25px;
+
+}
+
+.register-card h2{
+
+font-size:26px;
+
+}
+
+.preview img{
+
+width:120px;
+
+height:120px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+header{
+
+padding:15px;
+
+}
+
+.logo h1{
+
+font-size:24px;
+
+}
+
+.register-card{
+
+padding:20px;
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+font-size:15px;
+
+padding:13px;
+
+}
+
+.register-btn{
+
+font-size:16px;
+
+}
+
+}

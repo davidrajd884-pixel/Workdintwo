@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>WORKDIN - Skilled Hands, Trusted Work</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+<div class="logo">
+
+<img src="WhatsApp Image 2026-06-29 at 10.58.17 PM.jpeg" alt="WORKDIN Logo">
+
+<div>
+
+<h1>WORKDIN</h1>
+
+<p>Skilled Hands, Trusted Work</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="overlay">
+
+<h2>Find Skilled Workers Near You</h2>
+
+<p>
+Connect with trusted and verified rural professionals
+</p>
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search by name, profession or location...">
+
+<button id="searchBtn">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories">
+
+<button class="category active"
+data-category="all">
+
+<i class="fa-solid fa-border-all"></i>
+
+<span>All</span>
+
+</button>
+
+<button class="category"
+data-category="Electrician">
+
+⚡
+
+<span>Electrician</span>
+
+</button>
+
+<button class="category"
+data-category="Plumber">
+
+🚰
+
+<span>Plumber</span>
+
+</button>
+
+<button class="category"
+data-category="Carpenter">
+
+🪚
+
+<span>Carpenter</span>
+
+</button>
+
+<button class="category"
+data-category="Mason">
+
+🧱
+
+<span>Mason</span>
+
+</button>
+
+<button class="category"
+data-category="Painter">
+
+🎨
+
+<span>Painter</span>
+
+</button>
+
+<button class="category"
+data-category="Welder">
+
+🔥
+
+<span>Welder</span>
+
+</button>
+
+<button class="category"
+data-category="Mechanic">
+
+🔧
+
+<span>Mechanic</span>
+
+</button>
+
+<button class="category"
+data-category="More">
+
+•••
+
+<span>More</span>
+
+</button>
+
+</section>
+
+
+<!-- ================= WORKERS ================= -->
+
+<section class="workers-section">
+
+<div class="section-title">
+
+<h2>
+
+<i class="fa-solid fa-users"></i>
+
+Available Workers
+
+</h2>
+
+<p>
+
+Find the best professionals for your work
+
+</p>
+
+</div>
+
+
+<div
+id="workerContainer"
+class="worker-grid">
+
+<!-- JavaScript will generate workers here -->
+
+</div>
+
+</section>
+
+
+<!-- ================= EMPTY STATE ================= -->
+
+<template id="emptyState">
+
+<div class="empty">
+
+<i class="fa-solid fa-user-slash"></i>
+
+<h3>
+
+No Workers Registered
+
+</h3>
+
+<p>
+
+Register the first worker to see profiles here.
+
+</p>
+
+<a href="register.html">
+
+<button>
+
+Register Worker
+
+</button>
+
+</a>
+
+</div>
+
+</template>
+
+
+<!-- ================= FOOTER NAV ================= -->
+
+<nav class="bottom-nav">
+
+<a
+href="index.html"
+class="active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Home</span>
+
+</a>
+
+<a href="register.html">
+
+<i class="fa-solid fa-user-plus"></i>
+
+<span>Register Worker</span>
+
+</a>
+
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>

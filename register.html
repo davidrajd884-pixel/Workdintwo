@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register Worker | WORKDIN</title>
+
+<link rel="stylesheet" href="cssregister.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="WhatsApp Image 2026-06-29 at 10.58.17 PM.jpeg" alt="WORKDIN">
+
+<div>
+
+<h1>WORKDIN</h1>
+
+<p>Worker Registration</p>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="register-container">
+
+<div class="register-card">
+
+<h2>
+
+<i class="fa-solid fa-user-plus"></i>
+
+Register as Worker
+
+</h2>
+
+<p class="subtitle">
+
+Fill in your details to become visible to customers.
+
+</p>
+
+<form id="workerForm">
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter your full name"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Profession</label>
+<input
+type="text"
+id="profession"
+list="professionList"
+placeholder="Select or type your profession"
+required>
+
+<datalist id="professionList">
+
+<option value="Electrician">
+<option value="Plumber">
+<option value="Carpenter">
+<option value="Mason">
+<option value="Painter">
+<option value="Welder">
+<option value="Mechanic">
+<option value="AC Technician">
+<option value="Driver">
+<option value="Gardener">
+<option value="Tile Worker">
+<option value="Blacksmith">
+<option value="Cleaner">
+<option value="Water Supplier">
+<option value="Tailor">
+<option value="Cook">
+<option value="Security Guard">
+<option value="House Keeper">
+<option value="Farm Worker">
+
+</datalist>
+
+</div>
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="10 digit mobile number"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>WhatsApp Number</label>
+
+<input
+type="tel"
+id="whatsapp"
+placeholder="WhatsApp number"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Village / Town</label>
+
+<input
+type="text"
+id="location"
+placeholder="Enter your location"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>About Yourself</label>
+
+<textarea
+id="about"
+rows="5"
+placeholder="Write about your experience..."></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Profile Photo</label>
+
+<input
+type="file"
+id="image"
+accept="image/*">
+
+</div>
+
+<div class="preview">
+
+<img
+id="previewImage"
+src="images/default-profile.png"
+alt="Preview">
+
+</div>
+
+<button
+type="submit"
+class="register-btn">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Register Worker
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<nav class="bottom-nav">
+
+<a href="index.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Home</span>
+
+</a>
+
+<a
+href="register.html"
+class="active">
+
+<i class="fa-solid fa-user-plus"></i>
+
+<span>Register</span>
+
+</a>
+
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="register.js"></script>
+
+</body>
+
+</html>

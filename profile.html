@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Worker Profile | WORKDIN</title>
+
+<link rel="stylesheet" href="profile.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="WhatsApp Image 2026-06-29 at 10.58.17 PM.jpeg" alt="WORKDIN">
+
+<div>
+
+<h1>WORKDIN</h1>
+
+<p>Worker Profile</p>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ================= PROFILE ================= -->
+
+<section class="profile-section">
+
+<div class="profile-card">
+
+<div class="profile-top">
+
+<img
+id="profileImage"
+src="images/default-profile.png"
+alt="Profile">
+
+<div>
+
+<h2 id="workerName">Worker Name</h2>
+
+<p id="workerProfession">Profession</p>
+
+<div id="verifiedBadge" class="verified" style="display:none;">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Verified Worker
+
+</div>
+
+</div>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-address-card"></i>
+
+About
+
+</h3>
+
+<p id="workerAbout">
+
+No description available.
+
+</p>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-location-dot"></i>
+
+Location
+
+</h3>
+
+<p id="workerLocation"></p>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-phone"></i>
+
+Contact
+
+</h3>
+
+<p>
+
+<a id="workerPhone"></a>
+
+</p>
+
+<p>
+
+<a id="workerWhatsapp" target="_blank">
+
+WhatsApp
+
+</a>
+
+</p>
+
+</div>
+
+<!-- ================= GALLERY ================= -->
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-images"></i>
+
+Previous Works
+
+</h3>
+
+<input
+type="file"
+id="galleryInput"
+accept="image/*"
+multiple>
+
+<div
+id="gallery"
+class="gallery">
+
+</div>
+
+</div>
+
+<!-- ================= REVIEWS ================= -->
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-star"></i>
+
+Reviews
+
+</h3>
+
+<div id="reviewsContainer">
+
+<p>No reviews yet.</p>
+
+</div>
+
+<div class="rating-select">
+
+<label>Rate this Worker</label>
+
+<select id="rating">
+
+<option value="5">⭐⭐⭐⭐⭐ (5)</option>
+
+<option value="4">⭐⭐⭐⭐ (4)</option>
+
+<option value="3">⭐⭐⭐ (3)</option>
+
+<option value="2">⭐⭐ (2)</option>
+
+<option value="1">⭐ (1)</option>
+
+</select>
+
+</div>
+
+<textarea
+id="reviewText"
+rows="4"
+placeholder="Write your review..."></textarea>
+
+<button id="addReview">
+
+Submit Review
+
+</button>
+
+</div>
+
+<!-- ================= ACTIONS ================= -->
+
+<div class="profile-actions">
+
+<button id="editBtn">
+
+<i class="fa-solid fa-pen"></i>
+
+Edit Profile
+
+</button>
+
+<button id="deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+Delete Profile
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= EDIT PROFILE MODAL ================= -->
+
+<div id="editModal" class="modal">
+
+<div class="modal-content">
+
+<h2>Edit Profile</h2>
+
+<input
+type="text"
+id="editName"
+placeholder="Full Name">
+
+<input
+type="text"
+id="editProfession"
+placeholder="Profession">
+
+<input
+type="text"
+id="editPhone"
+placeholder="Phone Number">
+
+<input
+type="text"
+id="editWhatsapp"
+placeholder="WhatsApp Number">
+
+<input
+type="text"
+id="editLocation"
+placeholder="Location">
+
+<textarea
+id="editAbout"
+rows="5"
+placeholder="About Yourself"></textarea>
+
+<button id="saveEdit">
+
+Save Changes
+
+</button>
+
+<button id="closeModal">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="bottom-nav">
+
+<a href="index.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Home</span>
+
+</a>
+
+<a href="register.html">
+
+<i class="fa-solid fa-user-plus"></i>
+
+<span>Register</span>
+
+</a>
+
+<a
+href="profile.html"
+class="active">
+
+<i class="fa-solid fa-user"></i>
+
+<span>Profile</span>
+
+</a>
+
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="profile.js"></script>
+
+</body>
+
+</html>
