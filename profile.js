@@ -179,34 +179,21 @@ addReview.addEventListener("click",async()=>{
 
     }
 
-    worker.reviews.push({
 
-        comment: review,
+  worker.reviews.push({
+    comment: review,
+    rating: rating,
+    date: new Date().toLocaleDateString()
+});
 
-        rating: rating,
+worker.rating =
+    worker.reviews.reduce((sum, r) => sum + r.rating, 0) /
+    worker.reviews.length;
 
-        date: new Date().toLocaleDateString()
-
-    });
-
-    const total = worker.reviews.reduce(
-
-        (sum,r)=>sum+r.rating,
-
-        0
-
-    );
-
-    worker.rating =
-
-    (total/worker.reviews.length).toFixed(1);
-
-    saveWorker();
-
+await saveWorker();
+loadReviews();
     reviewText.value="";
-
-    ratingInput.value="5";
-
+    rating.value="5";
     loadReviews();
 
 });
@@ -276,6 +263,9 @@ async function saveWorker() {
             whatsapp: worker.whatsapp,
             location: worker.location,
             about: worker.about
+            reviews:worker.reviews,
+            rating: worker.raating,
+             gallery: worker.gallery,
         })
         .eq("id", worker.id);
 
