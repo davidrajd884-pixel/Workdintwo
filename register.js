@@ -47,6 +47,7 @@ form.addEventListener("submit", async function (e) {
     const whatsapp = document.getElementById("whatsapp").value.trim();
     const location = document.getElementById("location").value.trim();
     const about = document.getElementById("about").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     if (!name || !profession || !phone || !whatsapp || !location) {
         alert("Please fill all required fields.");
@@ -90,6 +91,7 @@ form.addEventListener("submit", async function (e) {
             whatsapp,
             location,
             about,
+            password,
             photo: profileImage,
             gallery: [],
             rating: 0,
