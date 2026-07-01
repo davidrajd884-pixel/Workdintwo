@@ -254,7 +254,7 @@ deleteBtn.addEventListener("click", async () => {
 
 async function saveWorker() {
 
-    const { error } = await db
+    const { data, error } = await db
         .from("workers")
         .update({
             name: worker.name,
@@ -263,19 +263,23 @@ async function saveWorker() {
             whatsapp: worker.whatsapp,
             location: worker.location,
             about: worker.about,
+            photo: worker.photo,
+            gallery: worker.gallery,
             reviews: worker.reviews,
-            rating: worker.rating,
-            gallery: worker.gallery
+            rating: Math.round(worker.rating)
         })
-        .eq("id", worker.id);
+        .eq("id", worker.id)
+        .select();
+
+    console.log("UPDATED DATA:", data);
+    console.log("ERROR:", error);
 
     if (error) {
-        console.error("Save Error:", error);
         alert(error.message);
         return;
     }
 
-    console.log("Saved Successfully");
+    alert("Saved Successfully");
 }
 saveEdit.addEventListener("click",async()=>{
 
