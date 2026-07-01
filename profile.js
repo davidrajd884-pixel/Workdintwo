@@ -262,20 +262,20 @@ async function saveWorker() {
             phone: worker.phone,
             whatsapp: worker.whatsapp,
             location: worker.location,
-            about: worker.about
-            reviews:worker.reviews,
-            rating: worker.raating,
-             gallery: worker.gallery,
+            about: worker.about,
+            reviews: worker.reviews,
+            rating: worker.rating,
+            gallery: worker.gallery
         })
         .eq("id", worker.id);
 
     if (error) {
-        console.error(error);
-        alert("Failed to save changes.");
+        console.error("Save Error:", error);
+        alert(error.message);
         return;
     }
 
-    alert("Profile updated successfully.");
+    console.log("Saved Successfully");
 }
 saveEdit.addEventListener("click",async()=>{
 
