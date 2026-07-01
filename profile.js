@@ -202,21 +202,27 @@ loadReviews();
 // Edit Profile
 // ----------------------------
 
-editBtn.addEventListener("click",()=>{
+editBtn.addEventListener("click", () => {
 
-editModal.style.display="flex";
+    const enteredPassword = prompt("Enter your profile password");
 
-editName.value=worker.name;
+    if (enteredPassword === null) {
+        return;
+    }
 
-editProfession.value=worker.profession;
+    if (enteredPassword !== worker.password) {
+        alert("Incorrect password!");
+        return;
+    }
 
-editPhone.value=worker.phone;
+    editModal.style.display = "flex";
 
-editWhatsapp.value=worker.whatsapp;
-
-editLocation.value=worker.location;
-
-editAbout.value=worker.about;
+    editName.value = worker.name;
+    editProfession.value = worker.profession;
+    editPhone.value = worker.phone;
+    editWhatsapp.value = worker.whatsapp;
+    editLocation.value = worker.location;
+    editAbout.value = worker.about;
 
 });
 
