@@ -232,7 +232,18 @@ editBtn.addEventListener("click", () => {
 
 deleteBtn.addEventListener("click", async () => {
 
-    const confirmDelete = confirm("Delete this worker profile?");
+    const enteredPassword = prompt("Enter your profile password");
+
+    if (enteredPassword === null) {
+        return;
+    }
+
+    if (enteredPassword !== worker.password) {
+        alert("Incorrect password!");
+        return;
+    }
+
+    const confirmDelete = confirm("Are you sure you want to delete this worker profile?");
 
     if (!confirmDelete) return;
 
