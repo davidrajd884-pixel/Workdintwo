@@ -47,8 +47,8 @@ const addReview = document.getElementById("addReview");
 
 function loadProfile(){
 
-    profileImage.src =
-        worker.image || "images/default-profile.png";
+profileImage.src =
+    worker.photo || "images/default-profile.png";
 
     workerName.textContent = worker.name;
 
@@ -73,7 +73,8 @@ function loadProfile(){
     }
 
     loadGallery();
-
+console.log(worker);
+console.log("Photo:", worker.photo);
     loadReviews();
 
 }
