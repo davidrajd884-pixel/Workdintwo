@@ -168,6 +168,9 @@ function loadProfile() {
         worker.verified
         ? "inline-flex"
         : "none";
+    loadGallery();
+loadReviews();
+updateRatingBars();
 
 }
 // ======================================
@@ -773,6 +776,3 @@ window.addEventListener("click", (e) => {
 // ======================================
 
 loadWorker();
-loadGallery();
-loadReviews();
-updateRatingBars();
