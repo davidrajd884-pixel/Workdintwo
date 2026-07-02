@@ -75,6 +75,23 @@ header{
     font-size:14px;
 
 }
+.hero{
+
+    width:100%;
+
+    min-height:340px;
+
+    background:url("ChatGPT Image Jul 2, 2026, 12_02_22 PM.png") center center/cover;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
 
 /* =========================
    MAIN CONTAINER
