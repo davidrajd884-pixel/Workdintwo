@@ -1,10 +1,67 @@
-// ===============================
-// WORKDIN - profile.js
-// ===============================
+// ======================================
+// WORKDIN - profile.js (Part 1)
+// ======================================
 
 let worker = null;
+let pendingAction = null;
 
+// Get Selected Worker ID
 const selectedId = localStorage.getItem("selectedWorker");
+
+if (!selectedId) {
+    alert("No worker selected.");
+    window.location.href = "index.html";
+}
+
+// ======================================
+// ELEMENTS
+// ======================================
+
+const profileImage = document.getElementById("profileImage");
+
+const workerName = document.getElementById("workerName");
+
+const workerProfession = document.getElementById("workerProfession");
+
+const workerAbout = document.getElementById("workerAbout");
+
+const workerLocation = document.getElementById("workerLocation");
+
+const workerPhone = document.getElementById("workerPhone");
+
+const workerWhatsapp = document.getElementById("workerWhatsapp");
+
+const workerRating = document.getElementById("workerRating");
+
+const reviewCount = document.getElementById("reviewCount");
+
+const jobsCompleted = document.getElementById("jobsCompleted");
+
+const verifiedBadge = document.getElementById("verifiedBadge");
+
+const gallery = document.getElementById("gallery");
+
+const galleryInput = document.getElementById("galleryInput");
+
+const reviewsContainer = document.getElementById("reviewsContainer");
+
+const ratingInput = document.getElementById("rating");
+
+const reviewText = document.getElementById("reviewText");
+
+const addReview = document.getElementById("addReview");
+
+// Rating Bars
+
+const bar5 = document.getElementById("bar5");
+const bar4 = document.getElementById("bar4");
+const bar3 = document.getElementById("bar3");
+const bar2 = document.getElementById("bar2");
+const bar1 = document.getElementById("bar1");
+
+// ======================================
+// LOAD WORKER
+// ======================================
 
 async function loadWorker() {
 
@@ -15,91 +72,144 @@ async function loadWorker() {
         .single();
 
     if (error || !data) {
+
+        console.error(error);
+
         alert("Worker not found.");
+
         window.location.href = "index.html";
+
         return;
+
     }
 
     worker = data;
 
+    // Prevent null errors
+
+    if (!worker.gallery)
+        worker.gallery = [];
+
+    if (!worker.reviews)
+        worker.reviews = [];
+
+    if (!worker.rating)
+        worker.rating = 0;
+
+    if (!worker.completedjobs)
+        worker.completedjobs = 0;
+
     loadProfile();
 
 }
-// ----------------------------
-// Worker Not Found
-// ----------------------------
 
+// ======================================
+// LOAD PROFILE
+// ======================================
 
+function loadProfile() {
 
+    // Profile Image
 
-// ----------------------------
-// Elements
-// ----------------------------
+    profileImage.src =
+        worker.photo && worker.photo !== ""
+        ? worker.photo
+        : "images/default-profile.png";
 
-const reviewsContainer = document.getElementById("reviewsContainer");
-const ratingInput = document.getElementById("rating");
-const reviewText = document.getElementById("reviewText");
-const addReview = document.getElementById("addReview");
+    // Name
 
-// ----------------------------
-// Load Profile
-// ----------------------------
+    workerName.textContent =
+        worker.name;
 
-function loadProfile(){
+    // Profession
 
-profileImage.src =
-    worker.photo || "images/default-profile.png";
+    workerProfession.textContent =
+        worker.profession;
 
-    workerName.textContent = worker.name;
-
-    workerProfession.textContent = worker.profession;
+    // About
 
     workerAbout.textContent =
         worker.about || "No description available.";
 
-    workerLocation.textContent = worker.location;
+    // Location
 
-    workerPhone.textContent = worker.phone;
+    workerLocation.textContent =
+        worker.location;
 
-    workerPhone.href = "tel:" + worker.phone;
+    // Phone
+
+    workerPhone.textContent =
+        worker.phone;
+
+    workerPhone.href =
+        "tel:" + worker.phone;
+
+    // WhatsApp
 
     workerWhatsapp.href =
         "https://wa.me/" + worker.whatsapp;
 
-    if(worker.verified){
+    // Rating
 
-        verifiedBadge.style.display="inline-block";
+    workerRating.textContent =
+        Number(worker.rating).toFixed(1);
 
-    }
+    reviewCount.textContent =
+        worker.reviews.length + " Reviews";
 
-    loadGallery();
-console.log(worker);
-console.log("Photo:", worker.photo);
-    loadReviews();
+    // Jobs
+
+    jobsCompleted.textContent =
+        worker.completedjobs + "+";
+
+    // Verified
+
+    verifiedBadge.style.display =
+        worker.verified
+        ? "inline-flex"
+        : "none";
 
 }
+// ======================================
+// GALLERY
+// ======================================
 
-// ----------------------------
-// Gallery
-// ----------------------------
+const imageModal = document.getElementById("imageModal");
+const previewImage = document.getElementById("previewImage");
+const closeImage = document.getElementById("closeImage");
 
-function loadGallery(){
+// Load Gallery
 
-    gallery.innerHTML="";
+function loadGallery() {
 
-    if(worker.gallery.length===0){
+    gallery.innerHTML = "";
 
-        gallery.innerHTML="<p>No work images uploaded.</p>";
+    if (!worker.gallery || worker.gallery.length === 0) {
+
+        gallery.innerHTML =
+            "<p>No previous work uploaded yet.</p>";
 
         return;
 
     }
 
-    worker.gallery.forEach(image=>{
+    worker.gallery.forEach((image) => {
 
-        const img=document.createElement("img");
+        const img = document.createElement("img");
 
-        img.src=image;
+        img.src = image;
+
+        img.alt = "Worker Previous Work";
+
+        img.loading = "lazy";
+
+        img.addEventListener("click", () => {
+
+            previewImage.src = image;
+
+            imageModal.style.display = "flex";
+
+        });
 
         gallery.appendChild(img);
 
@@ -107,238 +217,562 @@ function loadGallery(){
 
 }
 
-galleryInput.addEventListener("change",function(){
+// Close Image Preview
 
-    const files=[...this.files];
+closeImage.addEventListener("click", () => {
 
-    files.forEach(file=>{
-
-        const reader=new FileReader();
-
-        reader.onload=function(e){
-
-            worker.gallery.push(e.target.result);
-
-            saveWorker();
-
-            loadGallery();
-
-        }
-
-        reader.readAsDataURL(file);
-
-    });
+    imageModal.style.display = "none";
 
 });
 
-// ----------------------------
-// Reviews
-// ----------------------------
+imageModal.addEventListener("click", (e) => {
 
-function loadReviews(){
+    if (e.target === imageModal) {
 
-    reviewsContainer.innerHTML="";
+        imageModal.style.display = "none";
 
-    if(worker.reviews.length===0){
+    }
 
-        reviewsContainer.innerHTML="<p>No reviews yet.</p>";
+});
+
+// ======================================
+// UPLOAD GALLERY IMAGES
+// ======================================
+
+galleryInput.addEventListener("change", async function () {
+
+    const files = [...this.files];
+
+    if (files.length === 0) return;
+
+    for (const file of files) {
+
+        const reader = new FileReader();
+
+        await new Promise((resolve) => {
+
+            reader.onload = function (e) {
+
+                worker.gallery.push(e.target.result);
+
+                resolve();
+
+            };
+
+            reader.readAsDataURL(file);
+
+        });
+
+    }
+
+    await saveGallery();
+
+    loadGallery();
+
+    this.value = "";
+
+});
+
+// ======================================
+// SAVE GALLERY
+// ======================================
+
+async function saveGallery() {
+
+    const { error } = await db
+
+        .from("workers")
+
+        .update({
+
+            gallery: worker.gallery
+
+        })
+
+        .eq("id", worker.id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Failed to save gallery.");
 
         return;
 
     }
 
-    worker.reviews.forEach(review=>{
-
-        const div=document.createElement("div");
-
-        div.className="review";
-
-       div.innerHTML =
-
-"<strong>⭐ "+review.rating+"/5</strong><br><br>"+
-
-review.comment+
-
-"<br><small>"+review.date+"</small>";
-        reviewsContainer.appendChild(div);
-
-    });
+    console.log("Gallery Saved");
 
 }
 
-addReview.addEventListener("click",async()=>{
+// ======================================
+// UPDATE PROFILE
+// ======================================
 
-    const review = reviewText.value.trim();
+// At the end of loadProfile(), add these lines:
+//
+// loadGallery();
+// loadReviews();
+// updateRatingBars();
+//
+// So your loadProfile() should end like:
+//
+// verifiedBadge.style.display = worker.verified ? "inline-flex" : "none";
+//
+// loadGallery();
+// loadReviews();
+// updateRatingBars();
+// ======================================
+// REVIEWS
+// ======================================
+
+function loadReviews() {
+
+    reviewsContainer.innerHTML = "";
+
+    if (!worker.reviews || worker.reviews.length === 0) {
+
+        reviewsContainer.innerHTML =
+            "<p>No reviews yet.</p>";
+
+        workerRating.textContent = "0.0";
+        reviewCount.textContent = "0 Reviews";
+
+        return;
+    }
+
+    worker.reviews.forEach((review) => {
+
+        const card = document.createElement("div");
+
+        card.className = "review";
+
+        const initial =
+            review.name
+                ? review.name.charAt(0).toUpperCase()
+                : "U";
+
+        const stars = "⭐".repeat(review.rating);
+
+        card.innerHTML = `
+
+<div class="review-header">
+
+<div class="review-avatar">
+
+${initial}
+
+</div>
+
+<div class="review-info">
+
+<h4>${review.name || "Anonymous"}</h4>
+
+<p>${review.date}</p>
+
+<div class="review-rating">
+
+${stars}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="review-comment">
+
+${review.comment}
+
+</div>
+
+`;
+
+        reviewsContainer.appendChild(card);
+
+    });
+
+    workerRating.textContent =
+        Number(worker.rating).toFixed(1);
+
+    reviewCount.textContent =
+        worker.reviews.length + " Reviews";
+
+}
+
+// ======================================
+// RATING BARS
+// ======================================
+
+function updateRatingBars() {
+
+    const total = worker.reviews.length;
+
+    if (total === 0) {
+
+        bar5.style.width = "0%";
+        bar4.style.width = "0%";
+        bar3.style.width = "0%";
+        bar2.style.width = "0%";
+        bar1.style.width = "0%";
+
+        return;
+
+    }
+
+    const count = [0, 0, 0, 0, 0];
+
+    worker.reviews.forEach((r) => {
+
+        count[r.rating - 1]++;
+
+    });
+
+    bar1.style.width = (count[0] / total) * 100 + "%";
+    bar2.style.width = (count[1] / total) * 100 + "%";
+    bar3.style.width = (count[2] / total) * 100 + "%";
+    bar4.style.width = (count[3] / total) * 100 + "%";
+    bar5.style.width = (count[4] / total) * 100 + "%";
+
+}
+
+// ======================================
+// ADD REVIEW
+// ======================================
+
+addReview.addEventListener("click", async () => {
+
+    const comment = reviewText.value.trim();
 
     const rating = Number(ratingInput.value);
 
-    if(review===""){
+    if (comment === "") {
 
-        alert("Write a review first.");
+        alert("Please write a review.");
 
         return;
 
     }
 
+    const reviewer = prompt("Enter your name (optional)");
 
-  worker.reviews.push({
-    comment: review,
-    rating: rating,
-    date: new Date().toLocaleDateString()
-});
+    worker.reviews.push({
 
-worker.rating =
-    worker.reviews.reduce((sum, r) => sum + r.rating, 0) /
-    worker.reviews.length;
+        name: reviewer || "Anonymous",
 
-await saveWorker();
-loadReviews();
-    reviewText.value="";
-    rating.value="5";
+        comment: comment,
+
+        rating: rating,
+
+        date: new Date().toLocaleDateString()
+
+    });
+
+    // Calculate Average Rating
+
+    worker.rating =
+
+        worker.reviews.reduce(
+
+            (sum, review) => sum + review.rating,
+
+            0
+
+        ) / worker.reviews.length;
+
+    const { error } = await db
+
+        .from("workers")
+
+        .update({
+
+            reviews: worker.reviews,
+
+            rating: worker.rating
+
+        })
+
+        .eq("id", worker.id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Failed to save review.");
+
+        return;
+
+    }
+
+    reviewText.value = "";
+
+    ratingInput.value = "5";
+
     loadReviews();
 
-});
+    updateRatingBars();
 
-// ----------------------------
-// Edit Profile
-// ----------------------------
+    alert("Review submitted successfully.");
+
+});
+// ======================================
+// PASSWORD + EDIT + DELETE
+// ======================================
+
+// Password Modal Elements
+
+const passwordModal = document.getElementById("passwordModal");
+const profilePassword = document.getElementById("profilePassword");
+const verifyPassword = document.getElementById("verifyPassword");
+const cancelPassword = document.getElementById("cancelPassword");
+
+// Edit Modal Elements
+
+const editModal = document.getElementById("editModal");
+
+const editName = document.getElementById("editName");
+const editProfession = document.getElementById("editProfession");
+const editPhone = document.getElementById("editPhone");
+const editWhatsapp = document.getElementById("editWhatsapp");
+const editLocation = document.getElementById("editLocation");
+const editAbout = document.getElementById("editAbout");
+const editJobsCompleted = document.getElementById("editJobsCompleted");
+
+const saveEdit = document.getElementById("saveEdit");
+const closeModal = document.getElementById("closeModal");
+
+// Delete Modal
+
+const deleteModal = document.getElementById("deleteModal");
+
+const confirmDelete = document.getElementById("confirmDelete");
+const cancelDelete = document.getElementById("cancelDelete");
+
+// Buttons
+
+const editBtn = document.getElementById("editBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+
+// ======================================
+// OPEN PASSWORD MODAL
+// ======================================
 
 editBtn.addEventListener("click", () => {
 
-    const enteredPassword = prompt("Enter your profile password");
+    pendingAction = "edit";
 
-    if (enteredPassword === null) {
+    profilePassword.value = "";
+
+    passwordModal.style.display = "flex";
+
+});
+
+deleteBtn.addEventListener("click", () => {
+
+    pendingAction = "delete";
+
+    profilePassword.value = "";
+
+    passwordModal.style.display = "flex";
+
+});
+
+// ======================================
+// VERIFY PASSWORD
+// ======================================
+
+verifyPassword.addEventListener("click", () => {
+
+    if (profilePassword.value !== worker.password) {
+
+        alert("Incorrect Password");
+
         return;
+
     }
 
-    if (enteredPassword !== worker.password) {
-        alert("Incorrect password!");
-        return;
+    passwordModal.style.display = "none";
+
+    if (pendingAction === "edit") {
+
+        openEditModal();
+
     }
+
+    if (pendingAction === "delete") {
+
+        deleteModal.style.display = "flex";
+
+    }
+
+});
+
+cancelPassword.addEventListener("click", () => {
+
+    passwordModal.style.display = "none";
+
+});
+
+// ======================================
+// OPEN EDIT MODAL
+// ======================================
+
+function openEditModal() {
 
     editModal.style.display = "flex";
 
     editName.value = worker.name;
+
     editProfession.value = worker.profession;
+
     editPhone.value = worker.phone;
+
     editWhatsapp.value = worker.whatsapp;
+
     editLocation.value = worker.location;
+
     editAbout.value = worker.about;
 
-});
+    editJobsCompleted.value = worker.completedjobs;
 
-// ----------------------------
-// Delete Profile
-// ----------------------------
+}
 
-deleteBtn.addEventListener("click", async () => {
+// ======================================
+// SAVE EDIT
+// ======================================
 
-    const enteredPassword = prompt("Enter your profile password");
+saveEdit.addEventListener("click", async () => {
 
-    if (enteredPassword === null) {
-        return;
-    }
+    worker.name = editName.value.trim();
 
-    if (enteredPassword !== worker.password) {
-        alert("Incorrect password!");
-        return;
-    }
+    worker.profession = editProfession.value.trim();
 
-    const confirmDelete = confirm("Are you sure you want to delete this worker profile?");
+    worker.phone = editPhone.value.trim();
 
-    if (!confirmDelete) return;
+    worker.whatsapp = editWhatsapp.value.trim();
+
+    worker.location = editLocation.value.trim();
+
+    worker.about = editAbout.value.trim();
+
+    worker.completedjobs =
+        Number(editJobsCompleted.value);
 
     const { error } = await db
+
         .from("workers")
-        .delete()
+
+        .update({
+
+            name: worker.name,
+
+            profession: worker.profession,
+
+            phone: worker.phone,
+
+            whatsapp: worker.whatsapp,
+
+            location: worker.location,
+
+            about: worker.about,
+
+            completedjobs: worker.completedjobs
+
+        })
+
         .eq("id", worker.id);
 
     if (error) {
+
         console.error(error);
-        alert("Failed to delete profile.");
+
+        alert("Failed to save.");
+
         return;
+
+    }
+
+    editModal.style.display = "none";
+
+    loadProfile();
+
+    alert("Profile Updated Successfully");
+
+});
+
+// ======================================
+// CLOSE EDIT MODAL
+// ======================================
+
+closeModal.addEventListener("click", () => {
+
+    editModal.style.display = "none";
+
+});
+
+// ======================================
+// DELETE PROFILE
+// ======================================
+
+confirmDelete.addEventListener("click", async () => {
+
+    const { error } = await db
+
+        .from("workers")
+
+        .delete()
+
+        .eq("id", worker.id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Delete Failed");
+
+        return;
+
     }
 
     localStorage.removeItem("selectedWorker");
 
-    alert("Profile deleted successfully.");
+    alert("Profile Deleted");
 
     window.location.href = "index.html";
 
 });
-// ----------------------------
-// Save
-// ----------------------------
 
-async function saveWorker() {
+cancelDelete.addEventListener("click", () => {
 
-    const { data, error } = await db
-        .from("workers")
-        .update({
-            name: worker.name,
-            profession: worker.profession,
-            phone: worker.phone,
-            whatsapp: worker.whatsapp,
-            location: worker.location,
-            about: worker.about,
-            photo: worker.photo,
-            gallery: worker.gallery,
-            reviews: worker.reviews,
-            rating: Math.round(worker.rating)
-        })
-        .eq("id", worker.id)
-        .select();
-
-    console.log("UPDATED DATA:", data);
-    console.log("ERROR:", error);
-
-    if (error) {
-        alert(error.message);
-        return;
-    }
-
-    alert("Saved Successfully");
-}
-saveEdit.addEventListener("click",async()=>{
-
-worker.name=editName.value.trim();
-
-worker.profession=editProfession.value.trim();
-
-worker.phone=editPhone.value.trim();
-
-worker.whatsapp=editWhatsapp.value.trim();
-
-worker.location=editLocation.value.trim();
-
-worker.about=editAbout.value.trim();
-
-await saveWorker();
-
-loadProfile();
-
-editModal.style.display="none";
+    deleteModal.style.display = "none";
 
 });
 
-closeModal.addEventListener("click",()=>{
+// ======================================
+// CLOSE MODALS
+// ======================================
 
-editModal.style.display="none";
+window.addEventListener("click", (e) => {
+
+    if (e.target === editModal)
+
+        editModal.style.display = "none";
+
+    if (e.target === passwordModal)
+
+        passwordModal.style.display = "none";
+
+    if (e.target === deleteModal)
+
+        deleteModal.style.display = "none";
 
 });
 
-window.addEventListener("click",(e)=>{
-
-if(e.target===editModal){
-
-editModal.style.display="none";
-
-}
-
-});
-
-// ----------------------------
-// Start
-// ----------------------------
+// ======================================
+// START APP
+// ======================================
 
 loadWorker();
+loadGallery();
+loadReviews();
+updateRatingBars();

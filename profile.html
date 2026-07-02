@@ -6,28 +6,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Worker Profile | WORKDIN</title>
+<title>WORKDIN | Worker Profile</title>
 
 <link rel="stylesheet" href="profile.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<header>
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
 
 <div class="logo">
 
-<img src="WhatsApp Image 2026-06-29 at 10.58.17 PM.jpeg" alt="WORKDIN">
+<img src="WhatsApp Image 2026-06-29 at 10.58.17 PM.jpeg">
 
 <div>
 
 <h1>WORKDIN</h1>
 
-<p>Worker Profile</p>
+<p>Skilled Hands, Trusted Work</p>
 
 </div>
 
@@ -35,30 +37,45 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </header>
 
-<!-- ================= PROFILE ================= -->
+<!-- ================= MAIN ================= -->
 
-<section class="profile-section">
+<main class="profile-container">
 
-<div class="profile-card">
+<!-- ================= PROFILE CARD ================= -->
 
-<div class="profile-top">
+<section class="profile-card">
+
+<div class="profile-left">
 
 <img
 id="profileImage"
 src="images/default-profile.png"
-alt="Profile">
+class="profile-photo">
+
+</div>
+
+<div class="profile-right">
+
+<div class="top-row">
 
 <div>
 
-<h2 id="workerName">Worker Name</h2>
+<h1 id="workerName">
 
-<p id="workerProfession">Profession</p>
+Worker Name
 
-<div id="verifiedBadge" class="verified" style="display:none;">
+</h1>
+
+<div class="badges">
+
+<div
+id="verifiedBadge"
+class="verified-badge"
+style="display:none;">
 
 <i class="fa-solid fa-circle-check"></i>
 
-Verified Worker
+Verified
 
 </div>
 
@@ -66,146 +83,7 @@ Verified Worker
 
 </div>
 
-<div class="info-box">
-
-<h3>
-
-<i class="fa-solid fa-address-card"></i>
-
-About
-
-</h3>
-
-<p id="workerAbout">
-
-No description available.
-
-</p>
-
-</div>
-
-<div class="info-box">
-
-<h3>
-
-<i class="fa-solid fa-location-dot"></i>
-
-Location
-
-</h3>
-
-<p id="workerLocation"></p>
-
-</div>
-
-<div class="info-box">
-
-<h3>
-
-<i class="fa-solid fa-phone"></i>
-
-Contact
-
-</h3>
-
-<p>
-
-<a id="workerPhone"></a>
-
-</p>
-
-<p>
-
-<a id="workerWhatsapp" target="_blank">
-
-WhatsApp
-
-</a>
-
-</p>
-
-</div>
-
-<!-- ================= GALLERY ================= -->
-
-<div class="info-box">
-
-<h3>
-
-<i class="fa-solid fa-images"></i>
-
-Previous Works
-
-</h3>
-
-<input
-type="file"
-id="galleryInput"
-accept="image/*"
-multiple>
-
-<div
-id="gallery"
-class="gallery">
-
-</div>
-
-</div>
-
-<!-- ================= REVIEWS ================= -->
-
-<div class="info-box">
-
-<h3>
-
-<i class="fa-solid fa-star"></i>
-
-Reviews
-
-</h3>
-
-<div id="reviewsContainer">
-
-<p>No reviews yet.</p>
-
-</div>
-
-<div class="rating-select">
-
-<label>Rate this Worker</label>
-
-<select id="rating">
-
-<option value="5">⭐⭐⭐⭐⭐ (5)</option>
-
-<option value="4">⭐⭐⭐⭐ (4)</option>
-
-<option value="3">⭐⭐⭐ (3)</option>
-
-<option value="2">⭐⭐ (2)</option>
-
-<option value="1">⭐ (1)</option>
-
-</select>
-
-</div>
-
-<textarea
-id="reviewText"
-rows="4"
-placeholder="Write your review..."></textarea>
-
-<button id="addReview">
-
-Submit Review
-
-</button>
-
-</div>
-
-<!-- ================= ACTIONS ================= -->
-
-<div class="profile-actions">
+<div class="action-buttons">
 
 <button id="editBtn">
 
@@ -227,95 +105,509 @@ Delete Profile
 
 </div>
 
+<!-- ================= PROFESSION ================= -->
+
+<div class="profession-box">
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
+
+<span id="workerProfession">
+
+Profession
+
+</span>
+
+</div>
+
+<!-- ================= LOCATION ================= -->
+
+<div class="info-row">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<span id="workerLocation">
+
+Location
+
+</span>
+
+</div>
+
+<!-- ================= PHONE ================= -->
+
+<div class="info-row">
+
+<i class="fa-solid fa-phone"></i>
+
+<a id="workerPhone"></a>
+
+</div>
+
+<!-- ================= WHATSAPP ================= -->
+
+<div class="info-row">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+<a
+id="workerWhatsapp"
+target="_blank">
+
+WhatsApp
+
+</a>
+
+</div>
+
+<!-- ================= STATS ================= -->
+
+<div class="stats-row">
+
+<div class="rating-box">
+
+<i class="fa-solid fa-star"></i>
+
+<span id="workerRating">
+
+0.0
+
+</span>
+
+<span id="reviewCount">
+
+(0 Reviews)
+
+</span>
+
+</div>
+
+<div class="jobs-box">
+
+<i class="fa-solid fa-briefcase"></i>
+
+<span id="jobsCompleted">
+
+0+
+
+</span>
+
+Jobs Completed
+
+</div>
+
+</div>
+
+</div>
+
 </section>
+<!-- ================= ABOUT ================= -->
+
+<section class="card">
+
+<div class="section-title">
+
+<i class="fa-regular fa-address-card"></i>
+
+<h2>About Me</h2>
+
+</div>
+
+<p id="workerAbout">
+
+No description available.
+
+</p>
+
+</section>
+
+<!-- ================= PREVIOUS WORK ================= -->
+
+<section class="card">
+
+<div class="section-title">
+
+<i class="fa-regular fa-images"></i>
+
+<h2>Previous Work</h2>
+
+</div>
+
+<div
+id="gallery"
+class="gallery-grid">
+
+<!-- Images will be loaded from profile.js -->
+
+</div>
+
+<div class="upload-area">
+
+<label
+for="galleryInput"
+class="upload-box">
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+<h3>Upload More Photos</h3>
+
+<p>JPG, PNG or JPEG (Max. 5 MB)</p>
+
+</label>
+
+<input
+type="file"
+id="galleryInput"
+accept="image/*"
+multiple
+hidden>
+
+</div>
+
+</section>
+
+<!-- ================= IMAGE PREVIEW MODAL ================= -->
+
+<div
+id="imageModal"
+class="image-modal">
+
+<span id="closeImage">
+
+&times;
+
+</span>
+
+<img
+id="previewImage"
+class="preview-image">
+
+</div>
+<!-- ================= REVIEWS ================= -->
+
+<section class="card">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-star"></i>
+
+        <h2>Ratings & Reviews</h2>
+
+    </div>
+
+    <div class="review-layout">
+
+        <!-- Rating Summary -->
+
+        <div class="rating-summary">
+
+            <h1 id="workerRating">0.0</h1>
+
+            <div id="ratingStars" class="rating-stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p>
+                <span id="reviewCount">0</span> Reviews
+            </p>
+
+            <div class="rating-bars">
+
+                <div class="bar-row">
+                    <span>5 ★</span>
+                    <div class="bar">
+                        <div id="bar5" class="fill"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span>4 ★</span>
+                    <div class="bar">
+                        <div id="bar4" class="fill"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span>3 ★</span>
+                    <div class="bar">
+                        <div id="bar3" class="fill"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span>2 ★</span>
+                    <div class="bar">
+                        <div id="bar2" class="fill"></div>
+                    </div>
+                </div>
+
+                <div class="bar-row">
+                    <span>1 ★</span>
+                    <div class="bar">
+                        <div id="bar1" class="fill"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Reviews List -->
+
+        <div
+            id="reviewsContainer"
+            class="reviews-list">
+
+            <!-- Reviews will be loaded here by profile.js -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WRITE REVIEW ================= -->
+
+<section class="card">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-pen"></i>
+
+        <h2>Write a Review</h2>
+
+    </div>
+
+    <div class="review-form">
+
+        <label>
+
+            Your Rating
+
+        </label>
+
+        <select id="rating">
+
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="4">⭐⭐⭐⭐ Very Good</option>
+            <option value="3">⭐⭐⭐ Good</option>
+            <option value="2">⭐⭐ Fair</option>
+            <option value="1">⭐ Poor</option>
+
+        </select>
+
+        <textarea
+            id="reviewText"
+            rows="5"
+            placeholder="Share your experience with this worker..."></textarea>
+
+        <button id="addReview">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Submit Review
+
+        </button>
+
+    </div>
+
+</section>
+<!-- ================= PASSWORD MODAL ================= -->
+
+<div id="passwordModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <h2>Verify Password</h2>
+
+        </div>
+
+        <p>
+
+            Enter your profile password to continue.
+
+        </p>
+
+        <input
+            type="password"
+            id="profilePassword"
+            placeholder="Enter Password">
+
+        <div class="modal-buttons">
+
+            <button id="cancelPassword">
+
+                Cancel
+
+            </button>
+
+            <button id="verifyPassword">
+
+                Verify
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 <!-- ================= EDIT PROFILE MODAL ================= -->
 
 <div id="editModal" class="modal">
 
-<div class="modal-content">
+    <div class="modal-box large">
 
-<h2>Edit Profile</h2>
+        <div class="modal-header">
 
-<input
-type="text"
-id="editName"
-placeholder="Full Name">
+            <i class="fa-solid fa-user-pen"></i>
 
-<input
-type="text"
-id="editProfession"
-placeholder="Profession">
+            <h2>Edit Profile</h2>
 
-<input
-type="text"
-id="editPhone"
-placeholder="Phone Number">
+        </div>
 
-<input
-type="text"
-id="editWhatsapp"
-placeholder="WhatsApp Number">
+        <div class="form-grid">
 
-<input
-type="text"
-id="editLocation"
-placeholder="Location">
+            <input
+                type="text"
+                id="editName"
+                placeholder="Full Name">
 
-<textarea
-id="editAbout"
-rows="5"
-placeholder="About Yourself"></textarea>
+            <input
+                type="text"
+                id="editProfession"
+                placeholder="Profession">
 
-<button id="saveEdit">
+            <input
+                type="text"
+                id="editPhone"
+                placeholder="Phone Number">
 
-Save Changes
+            <input
+                type="text"
+                id="editWhatsapp"
+                placeholder="WhatsApp Number">
 
-</button>
+            <input
+                type="text"
+                id="editLocation"
+                placeholder="Location">
 
-<button id="closeModal">
+            <input
+                type="number"
+                id="editJobsCompleted"
+                placeholder="Jobs Completed">
 
-Cancel
+        </div>
 
-</button>
+        <textarea
+            id="editAbout"
+            rows="6"
+            placeholder="About Yourself"></textarea>
+
+        <div class="modal-buttons">
+
+            <button id="closeModal">
+
+                Cancel
+
+            </button>
+
+            <button id="saveEdit">
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
+<!-- ================= DELETE MODAL ================= -->
+
+<div id="deleteModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <h2>Delete Profile</h2>
+
+        </div>
+
+        <p>
+
+            Are you sure you want to permanently delete this worker profile?
+
+        </p>
+
+        <div class="modal-buttons">
+
+            <button id="cancelDelete">
+
+                Cancel
+
+            </button>
+
+            <button id="confirmDelete">
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
-<!-- ================= NAVIGATION ================= -->
+<!-- ================= BOTTOM NAVIGATION ================= -->
 
 <nav class="bottom-nav">
 
-<a href="index.html">
+    <a href="index.html">
 
-<i class="fa-solid fa-house"></i>
+        <i class="fa-solid fa-house"></i>
 
-<span>Home</span>
+        <span>Home</span>
 
-</a>
+    </a>
 
-<a href="register.html">
+    <a href="register.html">
 
-<i class="fa-solid fa-user-plus"></i>
+        <i class="fa-solid fa-user-plus"></i>
 
-<span>Register</span>
+        <span>Register</span>
 
-</a>
+    </a>
 
-<a
-href="profile.html"
-class="active">
+    <a href="profile.html" class="active">
 
-<i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-user"></i>
 
-<span>Profile</span>
+        <span>Profile</span>
 
-</a>
+    </a>
 
 </nav>
+
+<!-- ================= SCRIPTS ================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase.js"></script>
+
 <script src="profile.js"></script>
+
+</main>
 
 </body>
 
